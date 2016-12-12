@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 </head>
 <body>
-  <input id="money"/><button id="submit" onClick="calculate()">안녕</button>
+  <input id="money"/><button id="submit" onClick="createMinimumWallet()">Click me!!</button>
   <div id="result"></div>
   <script>
   /*
@@ -24,8 +24,9 @@
     예) 1만원 X장, 7만원 X장, 11만원 X장, 17만원 X장
   */
 
-    function calculate() {
-      /* 지폐를 최대한 쓸수 있는 갯수를 구하여 0부터 순회를 돌아 값을 구하는 로직. */
+    function createMinimumWallet() {
+      /* 지폐를 최대한 쓸 수 있는 갯수를 구하여 0부터 순회를 돌아 값을 구하는 로직. */
+      /* 50억 넣을 경우 삑난다 다른 로직 필요함. */
 
       var min = 99999;
       var result = null;
