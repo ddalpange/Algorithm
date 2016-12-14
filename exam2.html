@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>회문 만들기</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <input id="inputValue" /><button onclick="makePalindrome()">Click me</button>
+    <div id="result"></div>
+    <script>
+      window.makeReverseValue = function(value) {
+        return new String(value).split("").reverse().join("");
+      }
+      window.makePalindrome = function() {
+        var defaultValue = document.getElementById("inputValue").value;
+        var value = defaultValue;
+        var count = 0;
+        var result = "";
+        var reverseValue = "";
+        var sum = 0
+
+        while(count < 100) {
+
+          reverseValue = makeReverseValue(value);
+          if(reverseValue == value) {
+            break;
+          }
+
+          sum = parseInt(value) + parseInt(reverseValue);
+          result = result + value + " + " + reverseValue + " = " + sum + "<br/>";
+
+          count ++;
+          value = sum;
+        }
+        document.getElementById("result").innerHTML = result + "결과 : "+ defaultValue + " " + count + " " + value;
+
+
+      }
+    </script>
+  </body>
+</html>
