@@ -5,36 +5,39 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <input id="inputValue" /><button onclick="makePalindrome()">Click me</button>
+    <input id="number" /><button onclick="makePalindrome()">Click me</button>
     <div id="result"></div>
     <script>
-      window.makeReverseValue = function(value) {
-        return new String(value).split("").reverse().join("");
+      window.makeReverseNumber = function(number) {
+        return parseInt(new String(number).split("").reverse().join(""));
       }
+
       window.makePalindrome = function() {
-        var defaultValue = document.getElementById("inputValue").value;
-        var value = defaultValue;
+        var defaultNumber = document.getElementById("number").value;
+        var number = defaultNumber;
         var count = 0;
         var result = "";
-        var reverseValue = "";
+        var reverseNumber = "";
         var sum = 0
 
-        while(count < 100) {
+        while(reverseNumber = window.makeReverseNumber(number)) {
 
-          reverseValue = makeReverseValue(value);
-          if(reverseValue == value) {
+          if(reverseNumber == number) { // 회문이되었다면.
+            result += "결과 : "+ defaultNumber + " " + count + " " + number
+            break;
+          } else if(count == 100) { // 카운트를 넘기면
+            result = defaultNumber + " is not palindrome";
             break;
           }
 
-          sum = parseInt(value) + parseInt(reverseValue);
-          result = result + value + " + " + reverseValue + " = " + sum + "<br/>";
+          sum = parseInt(number) + parseInt(reverseNumber);
+          result = result + number + " + " + reverseNumber + " = " + sum + "<br/>";
 
           count ++;
-          value = sum;
+          number = sum;
         }
-        document.getElementById("result").innerHTML = result + "결과 : "+ defaultValue + " " + count + " " + value;
 
-
+        document.getElementById("result").innerHTML = result;;
       }
     </script>
   </body>
