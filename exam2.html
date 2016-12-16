@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <input id="number" /><button onclick="makePalindrome()">Click me</button>
+    <input id="doInputNumber" /><button onclick="makePalindrome()">Click me</button>
     <div id="result"></div>
     <script>
       window.makeReverseNumber = function(number) {
@@ -13,28 +13,29 @@
       }
 
       window.makePalindrome = function() {
-        var defaultNumber = document.getElementById("number").value;
+        var defaultNumber = parseInt(document.getElementById("doInputNumber").value);
         var number = defaultNumber;
         var count = 0;
         var result = "";
-        var reverseNumber = "";
-        var sum = 0
 
-        while(reverseNumber = window.makeReverseNumber(number)) {
+        while(count < 100) {
+          var reverseNumber = window.makeReverseNumber(number);
+          var isPalindrome = reverseNumber === number;
 
-          if(reverseNumber == number) { // 회문이되었다면.
+          if(isPalindrome) {
             result += "결과 : "+ defaultNumber + " " + count + " " + number
-            break;
-          } else if(count == 100) { // 카운트를 넘기면
-            result = defaultNumber + " is not palindrome";
             break;
           }
 
-          sum = parseInt(number) + parseInt(reverseNumber);
+          var sum = number + reverseNumber;
           result = result + number + " + " + reverseNumber + " = " + sum + "<br/>";
 
           count ++;
           number = sum;
+        }
+
+        if(count == 100) {
+          result = defaultNumber + " is not palindrome";
         }
 
         document.getElementById("result").innerHTML = result;;
