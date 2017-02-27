@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>회문2</title>
+  </head>
+  <body>
+    <p>존과 김도균님은 대학에서 문자열 이론을 공부하고 있습니다.
+      김도균님은 회문을 아주 좋아합니다. 회문은 앞에부터 읽으나 뒤에서부터 읽으나 같은 단어를 말합니다.
+      존은 김도균님을 임의의 문자열로 회문을 만들어 김도균님을 깜짝 놀래켜주고 싶습니다.
+      이때 존은 문자열 뒤에 0 이상의 문자를 추가해 회문을 생성하려고 합니다.
+      존이 생성할 수 있는 가장 짧은 회문의 길이를 리턴하시오.
+    </p>
+    <input type="text" id="inputString" name="inputstring" />
+    <button id="submit" onclick="makePalindrome()">Click ME!</button>
+    <div id="result"></div>
+    <script>
+      let inputString = document.getElementById("inputString");
+      let result = document.getElementById("result");
+      String.prototype.reverse = function () {
+        return this.split("").reverse().join("");
+      }
+      String.prototype.getLeftPart = function (centerIndex) {
+        return this.substring(0, Math.floor(centerIndex));
+      }
+      String.prototype.getRightPart = function (centerIndex) {
+        return this.substring(Math.floor(centerIndex)+1, this.length);
+      }
+
+      let makePalindrome = function(test) {
+        let s = inputString.value || test;
+        let minPalindromeLength = null;
+        console.log(`========${s}==========`);
+        for(let i = s.length/2; i <= s.length; i++) {
+          let left = s.getLeftPart(i);
+          let right = s.getRightPart(i);
+          if(left.reverse().indexOf(right) == 0) {
+            minPalindromeLength = left.length - right.length;
+            console.log('left', left);
+            console.log('right', right);  
+            console.log('i', i);
+            break;
+          }
+        }
+        console.log('result', minPalindromeLength);
+        
+      }
+      let testCases = ["1234", "abcdefg", "aba", "bbb", "agefg"];
+      testCases.map((item, i)=> {
+      makePalindrome(item);
+      });
+    </script>
+  
+  </body>
+</html>
