@@ -2,6 +2,12 @@
   <head>
     <meta charset="utf-8" />
     <title>회문2</title>
+    <style>
+      * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
     <p>존과 김도균님은 대학에서 문자열 이론을 공부하고 있습니다.
@@ -27,12 +33,12 @@
       }
 
       let makePalindrome = function(test) {
-        let s = inputString.value || test;
+        let orginString = inputString.value || test;
         let minPalindromeLength = null;
-        console.log(`========${s}==========`);
-        for(let i = s.length/2; i <= s.length; i++) {
-          let left = s.getLeftPart(i);
-          let right = s.getRightPart(i);
+        console.log(`======== "${orginString}" ==========`);
+        for(let i = orginString.length/2; i <= orginString.length; i++) {
+          let left = orginString.getLeftPart(i);
+          let right = orginString.getRightPart(i);
           if(left.reverse().indexOf(right) == 0) {
             minPalindromeLength = left.length - right.length;
             console.log('left', left);
@@ -40,9 +46,10 @@
             console.log('i', i);
             break;
           }
+
         }
         console.log('result', minPalindromeLength);
-        
+        result.innerHTML = `입력하신 문자열 : ${orginString} <br />결과값: ${minPalindromeLength}`;
       }
       let testCases = ["1234", "abcdefg", "aba", "bbb", "agefg"];
       testCases.map((item, i)=> {
